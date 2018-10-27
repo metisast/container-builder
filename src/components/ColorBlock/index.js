@@ -8,8 +8,9 @@ class ColorBlock extends React.Component {
     }
     
     render () {
+        const item = this.props.item
         return (
-            <div className = 'color-block' style = {{ backgroundColor: this.state.color }}></div>
+            <div className = 'color-block' style = {{ backgroundColor: item.color ? item.color : this.state.color }}></div>
         )
     }
 

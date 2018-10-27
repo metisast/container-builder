@@ -3,10 +3,10 @@ import { render } from 'react-dom'
 import App from './App'
 
 import { Provider } from 'mobx-react'
-import TestStore from './store/TestStore'
+import ContainerStore from './store/ContainerStore'
 
 const Root = (
-    <Provider TestStore = { TestStore }>
+    <Provider ContainerStore = { ContainerStore }>
         <App />
     </Provider>
 )

@@ -5,24 +5,30 @@ class Container extends React.Component {
 
     state = {
         featureShow: false,
-        colorBlocks: [],
+        colorBlocks: this.props.items,
         n: this.props.n
     }
 
     render () {
-        const { TestStore } = this.props
+        const { ContainerStore, items } = this.props
+        const container = items.map((data, index) => {
+            if (data.type === 'container') {
+                return <Container n = { ContainerStore.count } ContainerStore = { ContainerStore } key = { index } items = { data.items } />
+            }
+            return false
+        })
+        const colorBlock = items.map((data, index) => {
+            if (data.type === 'box') return (<ColorBlock key = {index} item = { data }/>)
+            return false
+        })
 
         return (
             <div className = 'wrapper'>
                 <section className = 'container'>
                     <section className = 'color-block-container'>
-                        { this.state.colorBlocks.map((block, index) => {
-                            return (<ColorBlock key = {index} />)
-                        }) }
+                        { colorBlock }
                     </section>
-
-                    { this.props.n !== 1 ? <Container n = { this.props.n - 1 } TestStore = { TestStore } /> : '' }
-
+                    { container }
                     <div className = 'label' onMouseEnter = { this.toggle } onMouseLeave = { this.toggle }>
                         <span>Add</span>
                         <div className = { this.state.featureShow ? 'features features_show' : 'features' }>
@@ -43,12 +49,17 @@ class Container extends React.Component {
 
     renderBox = () => {
         this.setState((state, props) => (
-            state.colorBlocks.push({test : 1})
+            state.colorBlocks.push({item : 'box'})
         ))
     }
 
     createContainer = () => {
-        this.props.TestStore.plus()
+        const item = {
+            type: 'container',
+            items: []
+        }
+        this.props.ContainerStore.plus()
+        // this.props.ContainerStore.add(item)
     }
 }
 

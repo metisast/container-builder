@@ -56,3 +56,30 @@ button{
     display: inline-block;
     border-radius: 5px;
 }
+.result{
+    z-index: 2;
+    top: 10px;
+    position: absolute;
+}
+.result.result_build{
+    left: 10px;
+}
+.result.result_create{
+    right: 10px;
+}
+.result textarea{
+    background-color: #fff;
+    width: 300px;
+    height: 300px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+.result button{
+    display: block;
+}
+.result__body button{
+    margin: 0 auto;
+}
+.result__example{
+    width: 300px;
+}
