@@ -1,7 +1,10 @@
 import React from 'react'
 import Container from './components/Container'
 import './style.css'
+import { inject, observer } from 'mobx-react'
 
+@inject('TestStore')
+@observer
 class App extends React.Component {
 
     state = {
@@ -9,17 +12,13 @@ class App extends React.Component {
     }
 
     render () {
+        const { TestStore } = this.props
         return (
             <div className = 'main'>
-                <Container n = { this.state.n } onCreateComponent = { this.createContainer } />
+            <h1>{ TestStore.count }</h1>
+                <Container n = { TestStore.count } TestStore = { TestStore } />
             </div>
         )
-    }
-
-    createContainer = () => {
-        this.setState((state, props) => ({
-            n: state.n + 1
-        }))
     }
 }
 

@@ -10,6 +10,8 @@ class Container extends React.Component {
     }
 
     render () {
+        const { TestStore } = this.props
+
         return (
             <div className = 'wrapper'>
                 <section className = 'container'>
@@ -19,13 +21,13 @@ class Container extends React.Component {
                         }) }
                     </section>
 
-                    { this.props.n !== 1 ? <Container n = { this.props.n - 1 } onCreateComponent = { this.createContainer } /> : '' }
+                    { this.props.n !== 1 ? <Container n = { this.props.n - 1 } TestStore = { TestStore } /> : '' }
 
                     <div className = 'label' onMouseEnter = { this.toggle } onMouseLeave = { this.toggle }>
                         <span>Add</span>
                         <div className = { this.state.featureShow ? 'features features_show' : 'features' }>
                             <button onClick = { this.renderBox }>Box</button>
-                            <button onClick = { this.props.onCreateComponent }>Container</button>
+                            <button onClick = { this.createContainer }>Container</button>
                         </div>
                     </div>
                 </section>
@@ -45,12 +47,9 @@ class Container extends React.Component {
         ))
     }
 
-    // createContainer = () => {
-    //     this.setState((state, props) => ({
-    //         n: state.n + 1
-    //     }))
-    //     console.log(this.state.n)
-    // }
+    createContainer = () => {
+        this.props.TestStore.plus()
+    }
 }
 
 export default Container

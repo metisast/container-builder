@@ -54,6 +54,5 @@ button{
     height: 20px;
     margin: 0 5px;
     display: inline-block;
-    border: 1px solid #aaa;
     border-radius: 5px;
 }
