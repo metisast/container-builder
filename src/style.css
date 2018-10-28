@@ -24,13 +24,13 @@
 .features{
     z-index: 1;
     top: -30px;
-    right: -60px;
+    right: -120px;
     position: absolute;
     display: none;
 }
 .features_show{
     display: inline-block;
-    width: 200px;
+    width: 300px;
 }
 button{
     text-align: center;
@@ -41,6 +41,10 @@ button{
     background-color: #fff;
     width: 80px;
     margin: 0 5px;
+}
+.features_show button {
+    width: 60px;
+    margin: 0 2px;
 }
 .color-block-container{
     position: relative;
@@ -55,6 +59,7 @@ button{
     margin: 0 5px;
     display: inline-block;
     border-radius: 5px;
+    cursor: pointer;
 }
 .result{
     z-index: 2;
@@ -69,8 +74,8 @@ button{
 }
 .result textarea{
     background-color: #fff;
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     border: 1px solid;
     border-radius: 5px;
 }
@@ -82,4 +87,15 @@ button{
 }
 .result__example{
     width: 300px;
+}
+.popover{
+    position: absolute;
+    z-index: 2;
+}
+.cover{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }

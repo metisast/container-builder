@@ -5,19 +5,18 @@ class Container extends React.Component {
 
     state = {
         featureShow: false,
-        colorBlocks: this.props.items,
-        n: this.props.n
+        willRender: false
     }
 
     render () {
-        const { ContainerStore, items } = this.props
-        const container = items.map((data, index) => {
+        const { ContainerStore, Data } = this.props
+        const container = Data.items.map((data, index) => {
             if (data.type === 'container') {
-                return <Container n = { ContainerStore.count } ContainerStore = { ContainerStore } key = { index } items = { data.items } />
+                return <Container ContainerStore = { ContainerStore } key = { index } Data = { data }/>
             }
             return false
         })
-        const colorBlock = items.map((data, index) => {
+        const colorBlock = Data.items.map((data, index) => {
             if (data.type === 'box') return (<ColorBlock key = {index} item = { data }/>)
             return false
         })
@@ -34,6 +33,7 @@ class Container extends React.Component {
                         <div className = { this.state.featureShow ? 'features features_show' : 'features' }>
                             <button onClick = { this.renderBox }>Box</button>
                             <button onClick = { this.createContainer }>Container</button>
+                            <button onClick = { this.deleteContainer }>Delete</button>
                         </div>
                     </div>
                 </section>
@@ -48,9 +48,11 @@ class Container extends React.Component {
     }
 
     renderBox = () => {
-        this.setState((state, props) => (
-            state.colorBlocks.push({item : 'box'})
-        ))
+        const item = {
+            type: 'box'
+        }
+        this.props.Data.items.push(item)
+        this.willRender()
     }
 
     createContainer = () => {
@@ -58,8 +60,19 @@ class Container extends React.Component {
             type: 'container',
             items: []
         }
-        this.props.ContainerStore.plus()
-        // this.props.ContainerStore.add(item)
+        this.props.Data.items.push(item)
+        this.willRender()
+    }
+
+    deleteContainer = () => {
+        this.props.Data.items = []
+        this.willRender()
+    }
+
+    willRender = () => {
+        this.setState((state, props) => ({
+            willRender: !state.willRender
+        }))
     }
 }
 
